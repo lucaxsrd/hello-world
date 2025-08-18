@@ -10,8 +10,6 @@ const port = 3000;
 
 const bcrypt = require('bcryptjs');
 
-require('dotenv').config();
-
 app.use(express.json());
 
 app.get('/', (req, res) => {
