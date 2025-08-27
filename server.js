@@ -1,17 +1,13 @@
 require('dotenv').config();
 
 const express= require('express');
-
 const app = express();
-
 const User = require('./user');
-
 const port = 3000;
-
 const bcrypt = require('bcryptjs');
+const authMiddleware = require ('./authMiddleware');
 
 app.use(express.json());
-
 app.get('/', (req, res) => {
   res.send('Olá, mundo da API!');
 });
@@ -72,8 +68,8 @@ app.post('/usuarios', async (req, res) => {
    const novoUsuario = new User(req.body); 
    await novoUsuario.save();
    res.status(201).json(novoUsuario);
-  } catch (erro){
-    console.error(erro);
+  } catch (error){
+    console.error(error);
     res.status(500).send('Erro ao criar usuário.');
   }
 });
@@ -94,7 +90,7 @@ app.put('/usuarios/:id', async (req, res) => {
   }
 });
 
-app.delete('/usuarios/:id', async (req, res) => {
+app.delete('/usuarios/:id', authMiddleware, async (req, res) => {
   try {
     const userId = req.params.id;
     const usuarioDeletado = await User.findByIdAndDelete(userId);
@@ -110,7 +106,6 @@ app.delete('/usuarios/:id', async (req, res) => {
 });
 
 const { connectDB } = require('./database');
-
 connectDB().then(() => {
   app.listen(port, () => {
     console.log(`Server rodando em http://localhost:${port}`);
