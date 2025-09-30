@@ -1,7 +1,7 @@
 ## Hello-world
 Meu nome é Lucas e estou estudando sobre programação e essa é meu primeiro passo para um dia me tornar alguém. 
 
-Esse "Hello, World!" é o primeiro de muitos.
+Esse é o primeiro de muitos.
 
 ## 🤓 Progresso em 18/08
 
@@ -24,6 +24,7 @@ Esse "Hello, World!" é o primeiro de muitos.
 ## Novas atualizações
 
 💻. Adicionado o sistema de rotas protegidas Middleware, para permitir que apenas usuários préviamente autorizados possam deletar e fazer alterações.
-    💻. Implementado a verificação de token JWT
 
-        💻. Proteção da rota DELETE e adicionado tratamento de erro para solicitações inválidas.
+💻. Implementado a verificação de token JWT
+
+💻. Proteção da rota DELETE e adicionado tratamento de erro para solicitações inválidas.
