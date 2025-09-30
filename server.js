@@ -37,22 +37,31 @@ const JWT_SECRET = process.env.JWT_SECRET;
 app.post('/login', async (req, res) => {
   try {
     const { email, senha } = req.body;
-    const usuarios = await User.findOne({ email}).select('+senha');
+    console.log('Dados recebidos:', { email, senha }); // Debug 1
+    
+    const usuarios = await User.findOne({ email }).select('+senha');
+    console.log('Usuário encontrado:', usuarios ? 'SIM' : 'NÃO'); // Debug 2
+    
     if (!usuarios){
-      return res.status(404).json({ mensagem: 'Credenciais inválidas.'});
+      console.log('Usuário não encontrado'); // Debug 3
+      return res.status(401).json({ mensagem: 'Credenciais inválidas.'});
     }
     const isMatch = await bcrypt.compare(senha, usuarios.senha);
+    console.log('Senha confere:', isMatch); // Debug 4
+  
     if (!isMatch) {
-      return res.status(400).json({ mensagem: 'Credenciais inválidas.' });
+      console.log('Senha incorreta'); // Debug 5
+      return res.status(401).json({ mensagem: 'Credenciais inválidas.' });
     }
     const token = jwt.sign({ id: usuarios._id }, JWT_SECRET, {
       expiresIn: '1h'
     });
     res.status(200).json({ token });
 } catch (error) {
+    console.error('Erro no login:', error); // Debug 6
     res.status(500).json({ mensagem: 'Erro ao fazer login.', erro: error.message });
   }
-}); 
+});
 
 app.get('/usuarios', async (req, res) => {
   try {

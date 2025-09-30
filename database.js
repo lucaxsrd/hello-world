@@ -4,7 +4,7 @@ const dbUser = process.env.DB_USER;
 const dbPassword = process.env.DB_PASSWORD;
 const mongoose = require('mongoose');
 
-const MONGODB_URI = `mongodb+srv://${dbUser}:${dbPassword}@clustermini.8o9abxk.mongodb.net/test?retryWrites=true&w=majority&appName=Clustermini`;
+const MONGODB_URI = `mongodb+srv://${dbUser}:${dbPassword}@clustermini.8o9abxk.mongodb.net/?retryWrites=true&w=majority&appName=Clustermini`;
 
 async function connectDB() {
     try {
