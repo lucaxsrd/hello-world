@@ -2,6 +2,7 @@
 Meu nome é Lucas e estou estudando sobre programação e essa é meu primeiro passo para um dia me tornar alguém. 
 
 Esse é o primeiro de muitos.
+Esse projeto foi desenvolvido com a instrução AI. Foi um excelente aprendizado.
 
 ## 🤓 Progresso em 18/08
 
